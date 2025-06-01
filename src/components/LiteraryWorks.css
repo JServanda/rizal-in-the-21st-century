@@ -14,7 +14,7 @@
   align-items: center;
   text-align: center;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
-              url('/src/assets/rizal-writing.jpg') center/cover;
+              url('../assets/rizal-writing.jpg') center/cover;
   position: relative;
   padding: 20px;
 }
@@ -121,7 +121,7 @@
   padding: 100px 20px;
   text-align: center;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 1)),
-              url('/src/assets/rizal-quote.jpg') center/cover fixed;
+              url('../assets/rizal-quote.jpg') center/cover fixed;
   position: relative;
 }
 
