@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import LiteraryWorks from './pages/LiteraryWorks';
 // import NationalHero from './pages/NationalHero';
@@ -13,7 +13,7 @@ import './App.css';
 
 function App() {
   return (
-    <HashRouter>
+    <Router>
       <div className="app-container">
         <Navigation />
         <Routes>
@@ -27,7 +27,7 @@ function App() {
           <Route path="/references" element={<References />} />
         </Routes>
       </div>
-    </HashRouter>
+    </Router>
   );
 }
 
