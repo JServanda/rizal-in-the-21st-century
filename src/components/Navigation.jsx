@@ -5,6 +5,7 @@ import './Navigation.css';
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -23,6 +24,26 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const tangibleLinks = [
+    { path: '/literary-works', label: 'Literary Works' },
+    { path: '/artistic-legacy', label: 'Artistic Legacy' },
+    { path: '/medical-practice', label: 'Medical Practice' }
+  ];
+
+  const intangibleLinks = [
+    { path: '/national-hero', label: 'National Hero' },
+    { path: '/languages', label: 'Languages' },
+    { path: '/education', label: 'Education' }
+  ];
+
+  const handleDropdownEnter = (dropdown) => {
+    setActiveDropdown(dropdown);
+  };
+
+  const handleDropdownLeave = () => {
+    setActiveDropdown(null);
+  };
+
   const isHomePage = location.pathname === '/';
 
   return (
@@ -33,23 +54,57 @@ const Navigation = () => {
             José Rizal
           </Link>
           <div className="nav-links">
-            <Link to="/literary-works" className={location.pathname === '/literary-works' ? 'active' : ''}>
-              Literary Works
-            </Link>
-            <Link to="/national-hero" className={location.pathname === '/national-hero' ? 'active' : ''}>
-              National Hero
-            </Link>
-            <Link to="/medical-practice" className={location.pathname === '/medical-practice' ? 'active' : ''}>
-              Medical Practice
-            </Link>
-            <Link to="/languages" className={location.pathname === '/languages' ? 'active' : ''}>
-              Languages
-            </Link>
-            <Link to="/education" className={location.pathname === '/education' ? 'active' : ''}>
-              Education
-            </Link>
-            <Link to="/artistic-legacy" className={location.pathname === '/artistic-legacy' ? 'active' : ''}>
-              Artistic Legacy
+            <div 
+              className="nav-dropdown"
+              onMouseEnter={() => handleDropdownEnter('tangible')}
+              onMouseLeave={handleDropdownLeave}
+            >
+              <span className={`nav-link ${activeDropdown === 'tangible' ? 'active' : ''}`}>
+                Tangible
+              </span>
+              {activeDropdown === 'tangible' && (
+                <div className="dropdown-menu">
+                  {tangibleLinks.map((link) => (
+                    <Link
+                      key={link.path}
+                      to={link.path}
+                      className={location.pathname === link.path ? 'active' : ''}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div 
+              className="nav-dropdown"
+              onMouseEnter={() => handleDropdownEnter('intangible')}
+              onMouseLeave={handleDropdownLeave}
+            >
+              <span className={`nav-link ${activeDropdown === 'intangible' ? 'active' : ''}`}>
+                Intangible
+              </span>
+              {activeDropdown === 'intangible' && (
+                <div className="dropdown-menu">
+                  {intangibleLinks.map((link) => (
+                    <Link
+                      key={link.path}
+                      to={link.path}
+                      className={location.pathname === link.path ? 'active' : ''}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <Link 
+              to="/references" 
+              className={`nav-link ${location.pathname === '/references' ? 'active' : ''}`}
+            >
+              References
             </Link>
           </div>
         </div>

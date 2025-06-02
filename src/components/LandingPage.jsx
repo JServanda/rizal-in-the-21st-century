@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
 import statueImage from '../assets/rizal-statue.png';
 import { FaBook, FaPalette, FaFlask, FaHeart, FaGraduationCap, FaBalanceScale } from 'react-icons/fa';
 
 const LandingPage = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const navigate = useNavigate();
 
   const tangibleLegacies = [
     {
@@ -12,21 +14,24 @@ const LandingPage = () => {
       title: "Literary Works",
       description: "Novels, poems, and essays that shaped Philippine nationalism",
       icon: <FaBook />,
-      category: "Literature"
+      category: "Literature",
+      path: "/literary-works"
     },
     {
       id: 2,
       title: "Artistic Creations",
       description: "Paintings, sculptures, and sketches showcasing his artistic talent",
       icon: <FaPalette />,
-      category: "Art"
+      category: "Art",
+      path: "/artistic-legacy"
     },
     {
       id: 3,
       title: "Scientific Works",
       description: "Medical research, ethnological studies, and scientific observations",
       icon: <FaFlask />,
-      category: "Science"
+      category: "Science",
+      path: "/medical-practice"
     }
   ];
 
@@ -36,21 +41,24 @@ const LandingPage = () => {
       title: "Nationalism",
       description: "Ideals that inspired the Philippine Revolution",
       icon: <FaHeart />,
-      category: "Ideology"
+      category: "Ideology",
+      path: "/national-hero"
     },
     {
       id: 5,
       title: "Education",
       description: "Advocacy for knowledge and enlightenment",
       icon: <FaGraduationCap />,
-      category: "Philosophy"
+      category: "Philosophy",
+      path: "/education"
     },
     {
       id: 6,
       title: "Human Rights",
       description: "Championing equality, justice, and human dignity",
       icon: <FaBalanceScale />,
-      category: "Advocacy"
+      category: "Advocacy",
+      path: "/languages"
     }
   ];
 
@@ -62,15 +70,15 @@ const LandingPage = () => {
     setHoveredCard(null);
   };
 
+  const handleCardClick = (path) => {
+    navigate(path);
+  };
+
   return (
     <div className="landing-page">
       {/* Statue Section */}
       <section className="statue-section">
-        {/* <div className="statue-background">
-          José Protasio Rizal Mercado y Alonso Realonda • National Hero of the Philippines • 
-          Physician • Novelist • Poet • Artist • Linguist • Revolutionary • 
-          "The glory of saving a country is not only for those who wield the sword but also for those who spread the light of knowledge."
-        </div> */}
+       
         <div className="statue-content">
           <h1 className="title">José Rizal</h1>
           <div className="floating-image">
@@ -96,6 +104,7 @@ const LandingPage = () => {
                 className={`legacy-card ${hoveredCard === legacy.id ? 'hovered' : ''}`}
                 onMouseEnter={() => handleCardHover(legacy.id)}
                 onMouseLeave={handleCardLeave}
+                onClick={() => handleCardClick(legacy.path)}
               >
                 <div className="legacy-icon">{legacy.icon}</div>
                 <h3>{legacy.title}</h3>
@@ -120,6 +129,7 @@ const LandingPage = () => {
                 className={`legacy-card ${hoveredCard === legacy.id ? 'hovered' : ''}`}
                 onMouseEnter={() => handleCardHover(legacy.id)}
                 onMouseLeave={handleCardLeave}
+                onClick={() => handleCardClick(legacy.path)}
               >
                 <div className="legacy-icon">{legacy.icon}</div>
                 <h3>{legacy.title}</h3>

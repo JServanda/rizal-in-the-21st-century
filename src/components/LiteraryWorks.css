@@ -1,8 +1,11 @@
 .literary-works-page {
   min-height: 100vh;
-  background: #000;
+  background-color: #000;
   color: #fff;
+  padding: 120px 20px 60px;
   overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .hero-section {
@@ -17,6 +20,7 @@
               url('../assets/rizal-writing.jpg') center/cover;
   position: relative;
   padding: 20px;
+  overflow: hidden;
 }
 
 .hero-section h1 {
@@ -36,6 +40,7 @@
   padding: 80px 20px;
   max-width: 1200px;
   margin: 0 auto;
+  overflow: visible;
 }
 
 .works-grid {
@@ -48,18 +53,129 @@
 .work-card {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 15px;
-  padding: 30px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 25px;
   transition: all 0.3s ease;
-  transform-style: preserve-3d;
-  perspective: 1000px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
 }
 
-.work-card:hover {
-  transform: translateY(-10px) scale(1.02);
+.work-card.clickable {
+  cursor: pointer;
+}
+
+.work-card.clickable:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: #fff;
+}
+
+.work-details h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.work-year {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 25px;
+}
+
+.work-section {
+  margin-bottom: 25px;
+}
+
+.work-section h3 {
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.work-section p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.themes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.theme-tag {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.citation-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.citation-section h3 {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 10px;
+}
+
+.citation-text {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
 }
 
 .work-header {
@@ -121,8 +237,9 @@
   padding: 100px 20px;
   text-align: center;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 1)),
-              url('../assets/rizal-quote.jpg') center/cover fixed;
+              url('../assets/rizal-quote.jpg') center/cover;
   position: relative;
+  overflow: hidden;
 }
 
 blockquote {
@@ -177,6 +294,33 @@ cite {
 
   blockquote {
     font-size: 1.5rem;
+  }
+
+  .modal-content {
+    padding: 20px;
+    width: 95%;
+  }
+
+  .work-details h2 {
+    font-size: 1.6rem;
+  }
+
+  .work-section h3 {
+    font-size: 1.2rem;
+  }
+
+  .theme-tag {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+
+  .work-card {
+    min-height: 300px;
+  }
+
+  .more-info-hint {
+    font-size: 0.8rem;
+    bottom: 12px;
   }
 }
 

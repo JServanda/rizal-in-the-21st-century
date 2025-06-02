@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../components/LiteraryWorks.css';
 
 const LiteraryWorks = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [selectedWork, setSelectedWork] = useState(null);
 
   const works = [
     {
@@ -19,33 +10,38 @@ const LiteraryWorks = () => {
       year: "1887",
       description: "Rizal's first novel, exposing the abuses of the Spanish colonial government and the Catholic Church in the Philippines.",
       keyThemes: ["Colonial oppression", "Social injustice", "National awakening"],
-      impact: "Considered one of the most important works in Philippine literature, it inspired the Philippine Revolution."
+      impact: "Considered one of the most important works in Philippine literature, it inspired the Philippine Revolution.",
+      significance: "The novel's publication led to Rizal's exile and eventual martyrdom. It remains a cornerstone of Philippine literature and national identity."
     },
     {
       title: "El Filibusterismo",
       year: "1891",
       description: "The sequel to Noli Me Tangere, depicting the continued struggle against colonial oppression.",
       keyThemes: ["Revolution", "Reform", "Social change"],
-      impact: "Further fueled the revolutionary movement in the Philippines."
+      impact: "Further fueled the revolutionary movement in the Philippines.",
+      significance: "Considered a more radical work than its predecessor, it directly influenced the Philippine Revolution."
     },
     {
       title: "Mi Último Adiós",
       year: "1896",
       description: "Rizal's final poem, written on the eve of his execution.",
       keyThemes: ["Patriotism", "Sacrifice", "Hope"],
-      impact: "Became a symbol of Filipino patriotism and resistance."
+      impact: "Became a symbol of Filipino patriotism and resistance.",
+      significance: "One of the most famous poems in Philippine literature, it continues to inspire Filipinos in their struggle for freedom and justice."
     }
   ];
 
+  const handleWorkClick = (work) => {
+    setSelectedWork(work);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedWork(null);
+  };
+
   return (
     <div className="literary-works-page">
-      <div 
-        className="hero-section parallax-section"
-        style={{
-          transform: `translateY(${scrollPosition * 0.5}px)`,
-          opacity: 1 - (scrollPosition * 0.002)
-        }}
-      >
+      <div className="hero-section">
         <h1>Literary Works</h1>
         <p className="subtitle">The written legacy of José Rizal</p>
       </div>
@@ -55,11 +51,8 @@ const LiteraryWorks = () => {
           {works.map((work, index) => (
             <div 
               key={index}
-              className="work-card"
-              style={{
-                transform: `translateY(${scrollPosition * 0.2}px)`,
-                opacity: 1 - (scrollPosition * 0.001)
-              }}
+              className="work-card clickable"
+              onClick={() => handleWorkClick(work)}
             >
               <div className="work-header">
                 <h2>{work.title}</h2>
@@ -68,11 +61,11 @@ const LiteraryWorks = () => {
               <p className="description">{work.description}</p>
               <div className="themes">
                 <h3>Key Themes</h3>
-                <ul>
+                <div className="themes-container">
                   {work.keyThemes.map((theme, i) => (
-                    <li key={i}>{theme}</li>
+                    <span key={i} className="theme-tag">{theme}</span>
                   ))}
-                </ul>
+                </div>
               </div>
               <div className="impact">
                 <h3>Impact</h3>
@@ -83,17 +76,47 @@ const LiteraryWorks = () => {
         </div>
       </div>
 
-      <div 
-        className="quote-section parallax-section"
-        style={{
-          transform: `translateY(${scrollPosition * 0.3}px)`,
-          opacity: 1 - (scrollPosition * 0.001)
-        }}
-      >
+      {selectedWork && (
+        <div className="modal-overlay" onClick={handleCloseModal}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={handleCloseModal}>×</button>
+            <div className="work-details">
+              <h2>{selectedWork.title}</h2>
+              <div className="work-year">{selectedWork.year}</div>
+              
+              <section className="work-section">
+                <h3>Summary</h3>
+                <p>{selectedWork.description}</p>
+              </section>
+
+              <section className="work-section">
+                <h3>Key Themes</h3>
+                <div className="themes-container">
+                  {selectedWork.keyThemes.map((theme, index) => (
+                    <span key={index} className="theme-tag">{theme}</span>
+                  ))}
+                </div>
+              </section>
+
+              <section className="work-section">
+                <h3>Impact</h3>
+                <p>{selectedWork.impact}</p>
+              </section>
+
+              <section className="work-section">
+                <h3>Historical Significance</h3>
+                <p>{selectedWork.significance}</p>
+              </section>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="quote-section">
         <blockquote>
-          "The glory of saving a country is not only for those who wield the sword but also for those who spread the light of knowledge."
+          "I have always loved my poor country, and I am sure I shall love her until my last moment, should men prove unjust to me."
         </blockquote>
-        <cite>- José Rizal</cite>
+        <cite>- José Rizal, Letter to Blumentritt, 1891</cite>
       </div>
     </div>
   );
