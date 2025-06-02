@@ -301,9 +301,7 @@ const ArtisticLegacy = () => {
                 />
               ))}
             </div>
-            <div className="carousel-hint">
-              <span>{isAutoScrolling ? '← Auto-scrolling →' : '← Paused - Hover to resume →'}</span>
-            </div>
+           
           </div>
         </div>
 

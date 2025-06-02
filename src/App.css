@@ -81,3 +81,64 @@ body {
   background-color: #000;
   position: relative;
 }
+
+/* Global styles for preventing text selection */
+.no-select {
+  -webkit-user-select: none;  /* Safari */
+  -moz-user-select: none;     /* Firefox */
+  -ms-user-select: none;      /* IE10+/Edge */
+  user-select: none;          /* Standard */
+  -webkit-touch-callout: none; /* iOS Safari */
+  cursor: default;
+}
+
+/* Allow selection for specific elements that need it */
+.allow-select {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Apply no-select to main content areas */
+.hero-section,
+.content-section,
+.reference-entry,
+.artwork-card,
+.context-card,
+.work-card,
+.contribution-card,
+.info-card,
+.impact,
+.themes,
+.description,
+.citation {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Keep navigation and interactive elements selectable */
+nav,
+button,
+input,
+textarea,
+a {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Add a subtle visual indicator when trying to select */
+.no-select::selection {
+  background: rgba(255, 215, 0, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.no-select::-moz-selection {
+  background: rgba(255, 215, 0, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+}

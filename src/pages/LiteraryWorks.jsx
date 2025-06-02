@@ -1,8 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Tooltip,
+  Legend,
+  Title
+} from 'chart.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import '../components/LiteraryWorks.css';
+
+// Register ChartJS components
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Tooltip,
+  Legend,
+  Title
+);
 
 const LiteraryWorks = () => {
   const [selectedWork, setSelectedWork] = useState(null);
+  const [isAnimating, setIsAnimating] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsAnimating(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const works = [
     {
@@ -31,6 +59,132 @@ const LiteraryWorks = () => {
     }
   ];
 
+  const literaryStats = {
+    categories: [
+      {
+        number: 2,
+        label: "Completed Novels",
+        color: "#FFD700"
+      },
+      {
+        number: 2,
+        label: "Unfinished Novels",
+        color: "#FFA500"
+      },
+      {
+        number: 17,
+        label: "Poems",
+        color: "#FF69B4"
+      },
+      {
+        number: 49,
+        label: "Essays & Articles",
+        color: "#00CED1"
+      },
+      {
+        number: 4,
+        label: "Plays",
+        color: "#9370DB"
+      },
+      {
+        number: 4,
+        label: "Speeches & Petitions",
+        color: "#32CD32"
+      },
+      {
+        number: 9,
+        label: "Historical Commentaries",
+        color: "#FF6347"
+      },
+      {
+        number: 4,
+        label: "Letters & Correspondence",
+        color: "#20B2AA"
+      }
+    ]
+  };
+
+  const chartData = {
+    labels: literaryStats.categories.map(cat => cat.label),
+    datasets: [{
+      data: literaryStats.categories.map(cat => cat.number),
+      backgroundColor: literaryStats.categories.map(cat => cat.color),
+      borderColor: 'rgba(255, 255, 255, 0.2)',
+      borderWidth: 1,
+      borderRadius: 4,
+      barThickness: 20,
+      maxBarThickness: 25,
+      categoryPercentage: 0.8,
+      barPercentage: 0.9
+    }]
+  };
+
+  const chartOptions = {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 10,
+        top: 10,
+        bottom: 10
+      }
+    },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        titleColor: '#FFD700',
+        bodyColor: '#fff',
+        borderColor: 'rgba(255, 215, 0, 0.2)',
+        borderWidth: 1,
+        padding: 8,
+        cornerRadius: 4,
+        displayColors: false,
+        callbacks: {
+          label: function(context) {
+            return `${context.raw} works`;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: {
+          color: 'rgba(255, 255, 255, 0.05)',
+          drawBorder: false
+        },
+        ticks: {
+          color: '#fff',
+          font: {
+            size: 12,
+            family: "'Segoe UI', 'Roboto', sans-serif"
+          },
+          padding: 4
+        },
+        border: { display: false },
+        beginAtZero: true
+      },
+      y: {
+        grid: { display: false },
+        ticks: {
+          color: '#fff',
+          font: {
+            size: 12,
+            family: "'Segoe UI', 'Roboto', sans-serif"
+          },
+          padding: 4
+        },
+        border: { display: false }
+      }
+    },
+    animation: {
+      duration: 800,
+      easing: 'easeOutQuart'
+    }
+  };
+
   const handleWorkClick = (work) => {
     setSelectedWork(work);
   };
@@ -47,6 +201,26 @@ const LiteraryWorks = () => {
       </div>
 
       <div className="content-section">
+        <div className="stats-section">
+          <div className="stats-header">
+            <h2>Literary Output</h2>
+            <p className="disclaimer">
+              <FontAwesomeIcon icon={faInfoCircle} className="disclaimer-icon" />
+               This is an approximate count based on available historical records and scholarly research.
+              Some works may be lost or undocumented.
+            </p>
+          </div>
+
+          <div className="visualization-container">
+            <div className="chart-wrapper">
+              <div className="chart-container">
+                <Bar data={chartData} options={chartOptions} />
+                {isAnimating && <div className="chart-overlay">Loading...</div>}
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="works-grid">
           {works.map((work, index) => (
             <div 

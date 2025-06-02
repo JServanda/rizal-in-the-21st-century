@@ -1,10 +1,38 @@
 import React, { useState } from 'react';
 import './References.css';
 
+const techStack = {
+  category: "Development & Technology",
+  entries: [
+    {
+      citation: "React.js Documentation. (2024). React - A JavaScript library for building user interfaces. Meta Open Source.",
+      description: "Core frontend framework used for building the interactive user interface and component-based architecture."
+    },
+    {
+      citation: "MDN Web Docs. (2024). CSS: Cascading Style Sheets. Mozilla Developer Network.",
+      description: "Modern CSS features including Flexbox, Grid, and CSS animations for responsive and dynamic layouts."
+    },
+    {
+      citation: "Stack Overflow Community. (2024). Various solutions and discussions on React, CSS, and web development best practices.",
+      description: "Invaluable community knowledge and problem-solving resources that helped shape the development process."
+    },
+    {
+      citation: "Cursor IDE. (2024). AI-powered code editor for modern development.",
+      description: "Enhanced development experience through AI-assisted coding and intelligent code completion."
+    },
+    {
+      citation: "GitHub. (2024). Version control and collaboration platform.",
+      description: "Used for version control, code management, and collaborative development."
+    },
+    {
+      citation: "Vite. (2024). Next Generation Frontend Tooling.",
+      description: "Build tool and development server providing fast and efficient development experience."
+    }
+  ]
+};
+
 const References = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) => 
@@ -26,6 +54,11 @@ const References = () => {
           citation: "Rizal, José. Noli Me Tangere. Translated by Harold Augenbraum. New York: Penguin Classics, 2006.",
           description: "Rizal's first novel, originally published in 1887, exposing the abuses of Spanish colonial rule."
         },
+        {
+          "citation": "BANTUG, J. P. \"Rizal and the Progress of the Natural Sciences.\" Philippine Studies 9, no. 1 (1961): 3-16. http://www.jstor.org/stable/42719651.",
+          "description": "This article explores José Rizal's engagement with the natural sciences, highlighting his contributions as a scientist and intellectual."
+        },
+        
         {
           citation: "Rizal, José. El Filibusterismo. Translated by Harold Augenbraum. New York: Penguin Classics, 2011.",
           description: "Rizal's second novel, published in 1891, continuing the narrative of colonial oppression."
@@ -124,25 +157,21 @@ const References = () => {
     }
   ];
 
+  const allReferences = [...references, techStack];
+
   return (
     <div className="references-page">
       <div className="hero-section">
         <h1>References</h1>
-        <p className="subtitle">Academic sources and citations</p>
+        <p className="subtitle">Sources & Technology</p>
+        <div className="hero-description">
+          <p>This project draws from a wide range of academic sources, historical documents, and modern development tools.</p>
+        </div>
       </div>
 
       <div className="content-section">
-        <div className="intro-text">
-          <p>
-            This page provides a comprehensive list of references used in compiling the information 
-            about José Rizal's life, works, and legacy. I tried to follow the Chicago Manual of Style, 
-            17th edition for all of the citation. The references are organized by category for easier navigation and research.
-          </p>
-        </div>
-
-       
         <div className="references-grid">
-          {references.map((category, index) => (
+          {allReferences.map((category, index) => (
             <div key={index} className="reference-category">
               <h2>{category.category}</h2>
               <div className="reference-entries">
@@ -156,6 +185,8 @@ const References = () => {
             </div>
           ))}
         </div>
+
+        
       </div>
     </div>
   );
