@@ -1,7 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './References.css';
 
 const References = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const artworks = [
+    {
+      title: "Dapitan Church Curtains",
+      year: "1894",
+      image: "/images/rizal-art/dapitan-curtains.jpg",
+      description: "Religious-themed curtains designed for Dapitan Church, showcasing Rizal's artistic versatility."
+    },
+    {
+      title: "Self-Portrait",
+      year: "1892",
+      image: "/images/rizal-art/self-portrait.jpg",
+      description: "A rare self-portrait showing Rizal's skill in capturing human expression."
+    },
+    {
+      title: "Saturnina Rizal",
+      year: "1889",
+      image: "/images/rizal-art/saturnina.jpg",
+      description: "Portrait of Rizal's sister, demonstrating his mastery of portraiture."
+    },
+    {
+      title: "Landscape of Dapitan",
+      year: "1893",
+      image: "/images/rizal-art/dapitan-landscape.jpg",
+      description: "A scenic view of Dapitan, where Rizal spent his exile years."
+    }
+  ];
+
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === artworks.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === 0 ? artworks.length - 1 : prevIndex - 1
+    );
+  };
+
   const references = [
     {
       category: "Primary Sources",
@@ -124,6 +165,56 @@ const References = () => {
           </p>
         </div>
 
+        <div className="artworks-section">
+          <h2>Rizal's Artistic Works</h2>
+          <div className="artworks-carousel">
+            <button 
+              className="carousel-button prev" 
+              onClick={prevImage}
+              aria-label="Previous artwork"
+            >
+              ‹
+            </button>
+            
+            <div className="carousel-content">
+              <div className="artwork-image">
+                <img 
+                  src={artworks[currentImageIndex].image} 
+                  alt={artworks[currentImageIndex].title}
+                  onError={(e) => {
+                    e.target.src = '/images/placeholder-art.jpg';
+                    e.target.alt = 'Artwork image not available';
+                  }}
+                />
+              </div>
+              <div className="artwork-info">
+                <h3>{artworks[currentImageIndex].title}</h3>
+                <span className="year">{artworks[currentImageIndex].year}</span>
+                <p>{artworks[currentImageIndex].description}</p>
+              </div>
+            </div>
+
+            <button 
+              className="carousel-button next" 
+              onClick={nextImage}
+              aria-label="Next artwork"
+            >
+              ›
+            </button>
+          </div>
+          
+          <div className="carousel-indicators">
+            {artworks.map((_, index) => (
+              <button
+                key={index}
+                className={`indicator ${index === currentImageIndex ? 'active' : ''}`}
+                onClick={() => setCurrentImageIndex(index)}
+                aria-label={`Go to artwork ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
         <div className="references-grid">
           {references.map((category, index) => (
             <div key={index} className="reference-category">
@@ -139,8 +230,6 @@ const References = () => {
             </div>
           ))}
         </div>
-
-      
       </div>
     </div>
   );
