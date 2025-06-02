@@ -122,7 +122,8 @@ const LiteraryWorks = () => {
   const chartOptions = {
     indexAxis: 'y',
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
+    aspectRatio: 1.5,
     layout: {
       padding: {
         left: 10,
@@ -158,10 +159,11 @@ const LiteraryWorks = () => {
         ticks: {
           color: '#fff',
           font: {
-            size: 12,
+            size: 11,
             family: "'Segoe UI', 'Roboto', sans-serif"
           },
-          padding: 4
+          padding: 4,
+          maxRotation: 0
         },
         border: { display: false },
         beginAtZero: true
@@ -171,10 +173,11 @@ const LiteraryWorks = () => {
         ticks: {
           color: '#fff',
           font: {
-            size: 12,
+            size: 11,
             family: "'Segoe UI', 'Roboto', sans-serif"
           },
-          padding: 4
+          padding: 4,
+          maxRotation: 0
         },
         border: { display: false }
       }
