@@ -54,10 +54,7 @@ const References = () => {
           citation: "Rizal, José. Noli Me Tangere. Translated by Harold Augenbraum. New York: Penguin Classics, 2006.",
           description: "Rizal's first novel, originally published in 1887, exposing the abuses of Spanish colonial rule."
         },
-        {
-          "citation": "BANTUG, J. P. \"Rizal and the Progress of the Natural Sciences.\" Philippine Studies 9, no. 1 (1961): 3-16. http://www.jstor.org/stable/42719651.",
-          "description": "This article explores José Rizal's engagement with the natural sciences, highlighting his contributions as a scientist and intellectual."
-        },
+        
         
         {
           citation: "Rizal, José. El Filibusterismo. Translated by Harold Augenbraum. New York: Penguin Classics, 2011.",
@@ -92,6 +89,10 @@ const References = () => {
         {
           citation: "Anderson, Benedict. Under Three Flags: Anarchism and the Anti-Colonial Imagination. London: Verso, 2005.",
           description: "Analysis of Rizal's role in the anti-colonial movement and his influence on Philippine nationalism."
+        },
+        {
+          "citation": "BANTUG, J. P. \"Rizal and the Progress of the Natural Sciences.\" Philippine Studies 9, no. 1 (1961): 3-16. http://www.jstor.org/stable/42719651.",
+          "description": "This article explores José Rizal's engagement with the natural sciences, highlighting his contributions as a scientist and intellectual."
         },
         {
           citation: "Rafael, Vicente L. The Promise of the Foreign: Nationalism and the Technics of Translation in the Spanish Philippines. Durham: Duke University Press, 2005.",
