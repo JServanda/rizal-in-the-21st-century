@@ -233,29 +233,6 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-.quote-section {
-  padding: 100px 20px;
-  text-align: center;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 1)),
-              url('../assets/rizal-quote.jpg') center/cover;
-  position: relative;
-  overflow: hidden;
-}
-
-blockquote {
-  font-size: 2rem;
-  font-style: italic;
-  max-width: 800px;
-  margin: 0 auto 20px;
-  line-height: 1.6;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-cite {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -280,11 +257,16 @@ cite {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .hero-section h1 {
-    font-size: 3rem;
+  .literary-works-page {
+    padding: 1rem;
+    padding-top: 60px;
   }
 
-  .hero-section .subtitle {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
     font-size: 1.2rem;
   }
 
@@ -292,7 +274,11 @@ cite {
     grid-template-columns: 1fr;
   }
 
-  blockquote {
+  .work-card {
+    padding: 1.5rem;
+  }
+
+  .work-header h2 {
     font-size: 1.5rem;
   }
 

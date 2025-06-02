@@ -102,13 +102,6 @@ const NationalHero = () => {
           </div>
         </div>
       </div>
-
-      <div className="quote-section">
-        <blockquote>
-          "I die without seeing the dawn brighten over my native land. You, who have it to see, welcome it - and forget not those who have fallen during the night."
-        </blockquote>
-        <cite>- José Rizal, Mi Último Adiós</cite>
-      </div>
     </div>
   );
 };

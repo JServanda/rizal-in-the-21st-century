@@ -61,13 +61,6 @@ const MedicalPractice = () => {
           ))}
         </div>
       </div>
-
-      <div className="quote-section">
-        <blockquote>
-          "The glory of saving a country is not only for those who wield the sword but also for those who spread the light of knowledge."
-        </blockquote>
-        <cite>- José Rizal, "The Philippines a Century Hence"</cite>
-      </div>
     </div>
   );
 };

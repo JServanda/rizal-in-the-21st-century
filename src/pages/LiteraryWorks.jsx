@@ -111,13 +111,6 @@ const LiteraryWorks = () => {
           </div>
         </div>
       )}
-
-      <div className="quote-section">
-        <blockquote>
-          "I have always loved my poor country, and I am sure I shall love her until my last moment, should men prove unjust to me."
-        </blockquote>
-        <cite>- José Rizal, Letter to Blumentritt, 1891</cite>
-      </div>
     </div>
   );
 };

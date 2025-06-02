@@ -108,13 +108,6 @@ const Languages = () => {
           </div>
         </div>
       </div>
-
-      <div className="quote-section">
-        <blockquote>
-          "Language is the mirror of a nation's soul."
-        </blockquote>
-        <cite>- José Rizal, "The Philippines a Century Hence"</cite>
-      </div>
     </div>
   );
 };

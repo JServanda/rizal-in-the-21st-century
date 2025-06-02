@@ -124,28 +124,6 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-.quote-section {
-  max-width: 800px;
-  margin: 4rem auto;
-  text-align: center;
-  padding: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.quote-section blockquote {
-  font-size: 1.5rem;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-.quote-section cite {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
 @media (max-width: 768px) {
   .medical-practice-page {
     padding: 1rem;
@@ -170,9 +148,5 @@
 
   .work-header h2 {
     font-size: 1.5rem;
-  }
-
-  .quote-section blockquote {
-    font-size: 1.2rem;
   }
 } 
